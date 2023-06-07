@@ -1,6 +1,7 @@
-import { Component,Input  } from '@angular/core';
+import { Component  } from '@angular/core';
 import { ActivatedRoute  } from '@angular/router'
 import {Location} from '@angular/common'
+import { IncreaseScoreService } from '../services/increase-score.service';
 
 @Component({
   selector: 'ns-calculation',
@@ -22,6 +23,7 @@ export class CalculationComponent{
   constructor(
     private _routes:ActivatedRoute,
     public location:Location,
+    private _increaseScore:IncreaseScoreService
     ){
     this.operation = this._routes.snapshot.paramMap.get('operator')
     this.sign = this.operatorSign[this.operation]
@@ -48,11 +50,11 @@ export class CalculationComponent{
       correctAnswer = Number((this.numberOne / this.numberTwo).toFixed(2))
     }
 
-    console.log(this.operation)
 
     if(newValue == correctAnswer){
       alert('Correct!')
       textField.text = ''
+      this._increaseScore.emitScore()
       this.generateTwoRandomNumber()
     }
 
@@ -62,10 +64,6 @@ export class CalculationComponent{
   goBack() {
     this.location.back()
   }
-
-openSettings() {
-    // implement the cusotm logic
-}
 
 
 }
