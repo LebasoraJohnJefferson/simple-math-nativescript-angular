@@ -1,0 +1,24 @@
+<ActionBar>
+    <GridLayout columns="auto, *, auto"  ios:padding="0 10">
+      <Label col="0" (tap)="goBack()" text="<" fontSize="20px" class="go-back-label"></Label>
+      <Label col="1" class="action-bar-title" [text]="operation"></Label>
+      <Label col="2"></Label>
+    </GridLayout>
+  </ActionBar>
+<FlexboxLayout justifyContent="center" alignItems="center"  width="100%"  flexDirection="column">
+  <Label marginBottom="5px" fontSize="30px" text="{{  numberOne }}"></Label>
+  <Label marginBottom="5px" fontSize="30px" text="{{  sign + numberTwo  }}"></Label>
+    <TextField hint="Enter Answer" 
+           secure="false"
+           width="90%"
+           padding="10px"
+           height="50px"
+           margin="auto"
+           borderRadius="10px"
+           keyboardType="number"
+           (textChange)="getAnswer($event)"
+           returnKeyType="done" 
+           boxShadow="0px 3px 3px rgba(0,0,0,.5)"
+           autocorrect="false">
+    </TextField>
+</FlexboxLayout>
